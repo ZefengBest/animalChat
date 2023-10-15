@@ -1,37 +1,39 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap'
+import '../../styles/account-operations.css'
 
 const RegisterForm = () => {
   const navigate = useNavigate()
 
   const handleRegister = () => {
-    navigate('/animal-selection')
+    navigate('/')
   }
 
   return (
-    <div>
-      <form>
-        <div>
-          <label htmlFor="username">Username</label>
-          <input type="text" id="username" />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" />
-        </div>
-        <div>
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input type="password" id="confirmPassword" />
-        </div>
-        <div>
-          <label htmlFor="rememberMe">Remember Me</label>
-          <input type="checkbox" id="rememberMe" />
-        </div>
-        <button type="button" onClick={handleRegister}>
-          Register
-        </button>
-      </form>
-    </div>
+    <Form onSubmit={handleRegister}>
+      <Form.Group className="mt-0 mb-3" controlId="formUsername">
+        <Form.Label>Username</Form.Label>
+        <Form.Control type="text" placeholder="Enter username" />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" placeholder="Enter password" />
+        <Form.Text className="text-muted">
+          We&apos;ll never share your password with anyone else.
+        </Form.Text>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formConfirmPassword">
+        <Form.Label>Confirm Password</Form.Label>
+        <Form.Control type="password" placeholder="Enter password" />
+        <Form.Text className="text-muted">
+          Please enter the same password again.
+        </Form.Text>
+      </Form.Group>
+      <Button className="mt-0" variant="primary" type="submit">
+        Register
+      </Button>
+    </Form>
   )
 }
 

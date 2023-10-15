@@ -1,0 +1,10 @@
+#animal-icon-container {
+  max-width: 500px;
+  min-width: 130px;
+}
+
+.animal-icon {
+  width: 100px;
+  height: 100px;
+  margin: 15px;
+}
