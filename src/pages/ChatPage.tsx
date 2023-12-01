@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Container, Button, Form, InputGroup } from 'react-bootstrap'
 import Message from '../components/chat/Message'
+import AnimatedMessage from '../components/chat/AnimatedMessage'
 import '../styles/chat.css'
 
 interface Message {
@@ -55,9 +56,25 @@ const ChatPage = () => {
         <h1 className="mx-auto">{capitalizedAnimal}</h1>
       </div>
       <div className="my-3 flex-grow-1 overflow-auto">
-        {messages.map((message, index) => (
-          <Message key={index} sender={message.sender} text={message.text} />
-        ))}
+        {messages.map((message, index) => {
+          if (index === messages.length - 1) {
+            return (
+              <AnimatedMessage
+                key={index}
+                sender={message.sender}
+                text={message.text}
+              />
+            )
+          } else {
+            return (
+              <Message
+                key={index}
+                sender={message.sender}
+                text={message.text}
+              />
+            )
+          }
+        })}
       </div>
       <Form onSubmit={handleSendMessage}>
         <InputGroup>
