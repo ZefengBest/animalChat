@@ -5,6 +5,8 @@ import LandingPage from './pages/LandingPage'
 import RegisterPage from './pages/RegisterPage'
 import AnimalSelectionPage from './pages/AnimalSelectionPage'
 import ChatPage from './pages/ChatPage'
+import 'bootstrap/dist/css/bootstrap.css'
+import './styles/index.css'
 
 const router = createBrowserRouter([
   { path: '/', element: <LandingPage /> },

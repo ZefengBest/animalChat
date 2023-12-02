@@ -14,6 +14,7 @@
 4. The Animal Chat application should be automatically opened, if not, visit [this link](http://localhost:3000)
 
 ## Start the server
+
 1. Open a terminal in the project's root directory
 2. Run `npm install mongodb express cors dotenv axios` to install all backend dependencies
 3. Run `node server/server.js` to start the backend server
