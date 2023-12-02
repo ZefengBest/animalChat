@@ -13,6 +13,13 @@
 3. Run `npm start` to start the application server
 4. The Animal Chat application should be automatically opened, if not, visit [this link](http://localhost:3000)
 
+## Start the server
+1. Open a terminal in the project's root directory
+2. Run `npm install mongodb express cors dotenv axios` to install all backend dependencies
+3. Run `node server/server.js` to start the backend server
+4. `Server is running on port: xxxx` should be displayed in the terminal
+5. MongoDB Atlas connection string is stored in `server/config.env` file
+
 ## Contribution guidelines
 
 - Create branches for developing features and follow this pattern while naming your branch: `<developer>/<feature-to-develop>` (e.g. `jinz/message-animation`)
