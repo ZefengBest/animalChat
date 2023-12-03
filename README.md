@@ -2,6 +2,15 @@
 
 ## Team Member: Jin Zihang & Niu Zefeng
 
+# Implemented Features
+
+- Register & login with MongoDB Atlas as the database service
+- Bootstrap with flex for styling
+- The animal selection page (each animal has its own history stored in local storage)
+- The chat page which handles message overflow
+- Animal response using the OpenAI API
+- Animated response (typing effect & sound effect)
+
 ## Setting up your development environment
 
 - Visual Studio Code
