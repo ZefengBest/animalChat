@@ -4,7 +4,10 @@ import { Container, Button, Form, InputGroup } from 'react-bootstrap'
 import Message from '../components/chat/Message'
 import AnimatedMessage from '../components/chat/AnimatedMessage'
 import '../styles/chat.css'
+import { OpenAI } from 'openai'
+import axios from 'axios'
 
+const OPENAI_API_KEY = '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'
 interface Message {
   sender: string
   text: string
@@ -27,7 +30,7 @@ const ChatPage = () => {
     setInput(event.target.value)
   }
 
-  const handleSendMessage = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSendMessage = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (input.trim() === '') return
 
@@ -35,9 +38,32 @@ const ChatPage = () => {
       sender: 'user',
       text: input
     }
+    let responseMessage = ''
+    try {
+      const response = await axios.post(
+        'https://api.openai.com/v1/chat/completions',
+        {
+          messages: [{ role: 'user', content: input }],
+          model: 'gpt-3.5-turbo',
+          temperature: 0.7
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${OPENAI_API_KEY}`
+          }
+        }
+      )
+      console.log(response)
+      responseMessage = response.data.choices[0].message.content
+      console.log(responseMessage)
+    } catch (error) {
+      console.log(error)
+    }
+
     const response: Message = {
       sender: animal,
-      text: 'To be implemented.'
+      text: responseMessage
     }
     const newMessages = [...messages, message, response]
 
