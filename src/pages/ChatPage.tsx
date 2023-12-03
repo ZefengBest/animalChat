@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { Container, Button, Form, InputGroup } from 'react-bootstrap'
 import Message from '../components/chat/Message'
 import AnimatedMessage from '../components/chat/AnimatedMessage'
+import OpenAI from 'openai'
 import '../styles/chat.css'
 
 interface Message {
@@ -23,11 +24,16 @@ const ChatPage = () => {
   const navigate = useNavigate()
   const goToAnimalSelection = () => navigate('/animal-selection')
 
+  const openai = new OpenAI({
+    apiKey: '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',
+    dangerouslyAllowBrowser: true
+  })
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value)
   }
 
-  const handleSendMessage = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSendMessage = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (input.trim() === '') return
 
@@ -35,11 +41,20 @@ const ChatPage = () => {
       sender: 'user',
       text: input
     }
-    const response: Message = {
+    const response = await openai.chat.completions.create({
+      messages: [
+        {
+          role: 'system',
+          content: `Response the following message as a ${animal}: ${input}`
+        }
+      ],
+      model: 'gpt-3.5-turbo'
+    })
+    const responseMessage: Message = {
       sender: animal,
-      text: 'To be implemented.'
+      text: response.choices[0].message.content || 'No comment.'
     }
-    const newMessages = [...messages, message, response]
+    const newMessages = [...messages, message, responseMessage]
 
     setMessages(newMessages)
     setInput('')
