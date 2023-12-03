@@ -30,7 +30,8 @@ recordRoutes.route('/record/check-username/:username').get(async (req, res) => {
   const existingUser = await db_connect
     .collection('users')
     .findOne({ username: req.params.username })
-  res.json({ exists: !!existingUser })
+  console.log('existingUser', existingUser)
+  res.json({ exists: !!existingUser, record: existingUser })
 })
 
 // This section will help you get a single record by id
