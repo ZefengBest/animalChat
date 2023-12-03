@@ -25,6 +25,7 @@ const ChatPage = () => {
   const goToAnimalSelection = () => navigate('/animal-selection')
 
   const openai = new OpenAI({
+    // This API key is created from a mock account
     apiKey: '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',
     dangerouslyAllowBrowser: true
   })

@@ -17,8 +17,13 @@ const AnimatedMessage = (props: { sender: string; text: string }) => {
   animalSoundMap.set('shark', 'Dun dun...')
 
   React.useEffect(() => {
-    const animalSoundFile = new Audio('/assets/animal-sounds/cat.wav')
-    animalSoundFile.play()
+    if (sender === 'dog') {
+      const animalSoundFile = new Audio('/assets/animal-sounds/dog.wav')
+      animalSoundFile.play()
+    } else {
+      const animalSoundFile = new Audio('/assets/animal-sounds/cat.wav')
+      animalSoundFile.play()
+    }
   }, [])
 
   const getAnimalSound = (animal: string): string => {
