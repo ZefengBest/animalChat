@@ -23,6 +23,16 @@ recordRoutes.route('/record').get(function (req, res) {
     })
 })
 
+//add a route to get a single record by username
+// Add this route to your server code
+recordRoutes.route('/record/check-username/:username').get(async (req, res) => {
+  const db_connect = dbo.getDb()
+  const existingUser = await db_connect
+    .collection('users')
+    .findOne({ username: req.params.username })
+  res.json({ exists: !!existingUser })
+})
+
 // This section will help you get a single record by id
 recordRoutes.route('/record/:id').get(function (req, res) {
   let db_connect = dbo.getDb()
