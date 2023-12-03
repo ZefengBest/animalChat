@@ -1,5 +1,7 @@
 # IT5007 Team Project - Team 23 - Animal Chat
 
+## Team Member: Jin Zihang & Niu Zefeng
+
 ## Setting up your development environment
 
 - Visual Studio Code
